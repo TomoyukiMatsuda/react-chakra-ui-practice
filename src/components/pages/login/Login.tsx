@@ -4,7 +4,7 @@ import { useAuth } from "hooks/useAuth";
 import React, { VFC, memo, useState } from "react";
 
 export const Login: VFC = memo(() => {
-  const { login } = useAuth();
+  const { login, loading } = useAuth();
   const [inputId, setInputId] = useState('');
 
   const onChangeInputId = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,7 +14,6 @@ export const Login: VFC = memo(() => {
     login(inputId);
   }
 
-
   return (
     <Flex align="center" justify="center" height="100vh">
       <Box bg="white" w="lg" h="sm" p={4} borderRadius="md" shadow="md">
@@ -22,7 +21,13 @@ export const Login: VFC = memo(() => {
         <Divider my={4} />
         <Stack spacing={6} py={4} px={10}>
           <Input placeholder="ユーザID入力" value={inputId} onChange={onChangeInputId} />
-          <PrimaryButton onClick={onClickLogin}>ログイン</PrimaryButton>
+          <PrimaryButton
+            disabled={inputId === ""}
+            loading={loading}
+            onClick={onClickLogin}
+          >
+            ログイン
+          </PrimaryButton>
         </Stack>
       </Box>
     </Flex>
