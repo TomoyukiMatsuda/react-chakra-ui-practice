@@ -10,6 +10,7 @@ export const Router = () => {
   return (
     <Switch>
       <LoginUserProvider>
+        {/*この中ではContextを参照できるようになる*/}
         <Route exact path="/">
           <Login />
         </Route>
